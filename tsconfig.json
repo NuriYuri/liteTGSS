@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "outDir": "dist",
+    "lib": [ "es2020", "ES2020.BigInt" ],
+    "target": "es2019",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports":true
+  }
+}
