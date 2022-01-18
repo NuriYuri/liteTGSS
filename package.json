@@ -1,10 +1,18 @@
 {
-  "main": "dist/app.js",
-  "bin": "dist/app.js",
-  "name": "node-sfml",
+  "bin": "dist/examples/DisplayWindow.js",
+  "name": "litetgss",
+  "version": "0.0.0-preview.1",
+  "description": "LiteTGSS framework to build game using sfml.js in similar way as LiteRGSS2!",
+  "keywords": [
+    "LiteTGSS",
+    "Game",
+    "SFML"
+  ],
+  "author": "Nuri Yuri",
+  "homepage": "https://github.com/NuriYuri/liteTGSS",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node src/app.ts"
+    "start": "ts-node examples/DisplayWindow.ts"
   },
   "dependencies": {
     "sfml.js": "^0.0.1-preview.42"
@@ -23,5 +31,12 @@
       "node16-win-x64"
     ],
     "outputPath": "dist"
-  }
+  },
+  "files": [
+    "index.d.ts",
+    "dist/lib/*.d.ts",
+    "lib/**/*",
+    "src/**/*",
+    "tsconfig.json"
+  ]
 }

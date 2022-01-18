@@ -1,5 +1,5 @@
 import { Joystick } from 'sfml.js';
-import { DisplayWindow } from './liteTGSS';
+import { DisplayWindow } from '../lib';
 
 let running = true;
 const window = new DisplayWindow({ title: 'SFML In TS', width: 320, height: 240, scale: 2, mouseVisible: true });
@@ -25,6 +25,7 @@ window.onJoystickMoved = ({ joystickMove: { joystickId, axisStr, position } }) =
   const name = Joystick.getIdentification(joystickId).name;
   console.log(`Axis ${axisStr} of ${name} moved to ${position}!`);
 };
+window.onTextEntered = ({ text: { content } }) => console.log(`Entered: ${content}`);
 
 while (running) {
   window.update();
