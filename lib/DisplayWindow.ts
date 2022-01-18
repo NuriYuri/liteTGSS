@@ -134,17 +134,7 @@ export class DisplayWindow extends RenderWindow {
   /**
    * Set the current settings of the Window
    */
-  set settings({
-    title,
-    width,
-    height,
-    scale,
-    bpp = 32,
-    frameRate = 60,
-    vsync = true,
-    fullscreen = false,
-    mouseVisible = false,
-  }: DisplayWindowSettings) {
+  set settings({ title, width, height, scale, bpp, frameRate, vsync, fullscreen, mouseVisible }: CurrentDisplayWindowSettings) {
     this.setVerticalSyncEnabled(vsync);
     this.setMouseCursorVisible(mouseVisible);
     this.setFramerateLimit(vsync ? 0 : frameRate);

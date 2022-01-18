@@ -1,7 +1,8 @@
 {
   "bin": "dist/examples/DisplayWindow.js",
+  "main": "dist/lib/index.js",
   "name": "litetgss",
-  "version": "0.0.0-preview.1",
+  "version": "0.0.0-preview.4",
   "description": "LiteTGSS framework to build game using sfml.js in similar way as LiteRGSS2!",
   "keywords": [
     "LiteTGSS",
@@ -35,6 +36,11 @@
   "files": [
     "index.d.ts",
     "dist/lib/*.d.ts",
+    "dist/lib/*.js",
+    "dist/lib/*.js.map",
+    "dist/lib/**/*.d.ts",
+    "dist/lib/**/*.js",
+    "dist/lib/**/*.js.map",
     "lib/**/*",
     "src/**/*",
     "tsconfig.json"

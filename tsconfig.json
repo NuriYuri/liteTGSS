@@ -5,9 +5,11 @@
     "outDir": "dist",
     "lib": [ "es2020", "ES2020.BigInt" ],
     "target": "es2019",
-    "allowJs": true,
+    "allowJs": false,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "declaration": true
-  }
+    "sourceMap": true
+  },
+  "exclude": [
+    "index.d.ts"
+  ]
 }
