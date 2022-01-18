@@ -1,16 +1,20 @@
 import {
   Event,
   Image,
+  JoystickButtonEvent,
+  JoystickConnectEvent,
+  JoystickMoveEvent,
   KeyEvent,
   MouseButtonEvent,
   MouseMoveEvent,
   MouseWheelScrollEvent,
-  OtherEvent,
   RenderWindow,
+  SensorEvent,
   SizeEvent,
   TextEvent,
+  TouchEvent,
   VideoMode,
-} from "sfml.js";
+} from 'sfml.js';
 
 export type DisplayWindowSettings = {
   title: string;
@@ -35,19 +39,19 @@ export class DisplayWindow extends RenderWindow {
   public onGainedFocus: () => void = () => {
     return;
   };
-  public onJoystickButtonPressed: (event: OtherEvent) => void = () => {
+  public onJoystickButtonPressed: (event: JoystickButtonEvent) => void = () => {
     return;
   };
-  public onJoystickButtonReleased: (event: OtherEvent) => void = () => {
+  public onJoystickButtonReleased: (event: JoystickButtonEvent) => void = () => {
     return;
   };
-  public onJoystickConnected: (event: OtherEvent) => void = () => {
+  public onJoystickConnected: (event: JoystickConnectEvent) => void = () => {
     return;
   };
-  public onJoystickDisconnected: (event: OtherEvent) => void = () => {
+  public onJoystickDisconnected: (event: JoystickConnectEvent) => void = () => {
     return;
   };
-  public onJoystickMoved: (event: OtherEvent) => void = () => {
+  public onJoystickMoved: (event: JoystickMoveEvent) => void = () => {
     return;
   };
   public onKeyPressed: (event: KeyEvent) => void = () => {
@@ -80,19 +84,19 @@ export class DisplayWindow extends RenderWindow {
   public onResized: (event: SizeEvent) => void = () => {
     return;
   };
-  public onSensorChanged: (event: OtherEvent) => void = () => {
+  public onSensorChanged: (event: SensorEvent) => void = () => {
     return;
   };
   public onTextEntered: (event: TextEvent) => void = () => {
     return;
   };
-  public onTouchBegan: (event: OtherEvent) => void = () => {
+  public onTouchBegan: (event: TouchEvent) => void = () => {
     return;
   };
-  public onTouchEnded: (event: OtherEvent) => void = () => {
+  public onTouchEnded: (event: TouchEvent) => void = () => {
     return;
   };
-  public onTouchMoved: (event: OtherEvent) => void = () => {
+  public onTouchMoved: (event: TouchEvent) => void = () => {
     return;
   };
 
@@ -107,7 +111,12 @@ export class DisplayWindow extends RenderWindow {
     fullscreen = false,
     mouseVisible = false,
   }: DisplayWindowSettings) {
-    super(new VideoMode(width * scale, height * scale, bpp), title, fullscreen ? RenderWindow.Style.Fullscreen : RenderWindow.Style.Default);
+    super(
+      new VideoMode(width * scale, height * scale, bpp),
+      title,
+      // tslint:disable-next-line: no-bitwise
+      fullscreen ? RenderWindow.Style.Fullscreen : RenderWindow.Style.Titlebar | RenderWindow.Style.Close,
+    );
     this.setVerticalSyncEnabled(vsync);
     this.setMouseCursorVisible(mouseVisible);
     this.setFramerateLimit(vsync ? 0 : frameRate);
@@ -200,51 +209,54 @@ export class DisplayWindow extends RenderWindow {
 
   private processEvent(event: Event) {
     switch (event.type) {
-      case "Closed":
+      case 'Closed':
         return this.onClose();
-      case "GainedFocus":
+      case 'GainedFocus':
         return this.onGainedFocus();
-      case "JoystickButtonPressed":
+      case 'JoystickButtonPressed':
         return this.onJoystickButtonPressed(event);
-      case "JoystickButtonReleased":
+      case 'JoystickButtonReleased':
         return this.onJoystickButtonReleased(event);
-      case "JoystickConnected":
+      case 'JoystickConnected':
         return this.onJoystickConnected(event);
-      case "JoystickDisconnected":
+      case 'JoystickDisconnected':
         return this.onJoystickDisconnected(event);
-      case "JoystickMoved":
+      case 'JoystickMoved':
         return this.onJoystickMoved(event);
-      case "KeyPressed":
+      case 'KeyPressed':
         return this.onKeyPressed(event);
-      case "KeyReleased":
+      case 'KeyReleased':
         return this.onKeyReleased(event);
-      case "LostFocus":
+      case 'LostFocus':
         return this.onLostFocus();
-      case "MouseButtonPressed":
+      case 'MouseButtonPressed':
         return this.onMouseButtonPressed(event);
-      case "MouseButtonReleased":
+      case 'MouseButtonReleased':
         return this.onMouseButtonReleased(event);
-      /*case 'MouseEntered': return this.onMouseEntered();*/
-      case "MouseLeft":
+      case 'MouseEntered':
+        return this.onMouseEntered();
+      case 'MouseLeft':
         return this.onMouseLeft();
-      case "MouseMoved":
+      case 'MouseMoved':
         return this.onMouseMoved(event);
-      case "MouseWheelMoved":
+      case 'MouseWheelMoved':
         return;
-      case "MouseWheelScrolled":
+      case 'MouseWheelScrolled':
         return this.onMouseWheelScrolled(event);
-      case "Resized":
+      case 'Resized':
         return this.onResized(event);
-      case "SensorChanged":
+      case 'SensorChanged':
         return this.onSensorChanged(event);
-      case "TextEntered":
+      case 'TextEntered':
         return this.onTextEntered(event);
-      case "TouchBegan":
+      case 'TouchBegan':
         return this.onTouchBegan(event);
-      case "TouchEnded":
+      case 'TouchEnded':
         return this.onTouchEnded(event);
-      case "TouchMoved":
+      case 'TouchMoved':
         return this.onTouchMoved(event);
+      case 'Resized':
+        return;
       default:
         const assertUnreachable = (input: never) => {
           return;

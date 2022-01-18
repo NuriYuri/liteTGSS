@@ -7,7 +7,7 @@
     "start": "ts-node src/app.ts"
   },
   "dependencies": {
-    "sfml.js": "^0.0.1-preview.41"
+    "sfml.js": "^0.0.1-preview.42"
   },
   "devDependencies": {
     "@types/node": "^17.0.8",
