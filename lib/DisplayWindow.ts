@@ -181,13 +181,18 @@ export class DisplayWindow extends RenderWindow {
    * Update the window content
    */
   update() {
-    this.clear(0);
-    this.display();
-    let event = this.pollEvent();
-    while (event) {
-      this.processEvent(event);
-      event = this.pollEvent();
-    }
+    return new Promise((resolve) => {
+      setImmediate(() => {
+        this.clear(0);
+        this.display();
+        let event = this.pollEvent();
+        while (event) {
+          this.processEvent(event);
+          event = this.pollEvent();
+        }
+        resolve(true);
+      });
+    });
   }
 
   /**

@@ -2,7 +2,7 @@ import { Joystick } from 'sfml.js';
 import { DisplayWindow } from '../lib';
 
 let running = true;
-const window = new DisplayWindow({ title: 'SFML In TS', width: 320, height: 240, scale: 2, mouseVisible: true });
+const window = new DisplayWindow({ title: 'SFML In TS', width: 320, height: 240, scale: 2, vsync: false, frameRate: 5, mouseVisible: true });
 window.onClose = () => (running = false);
 window.onKeyPressed = ({ key }) => {
   if (key.codeStr === 'Escape') running = false;
@@ -27,7 +27,10 @@ window.onJoystickMoved = ({ joystickMove: { joystickId, axisStr, position } }) =
 };
 window.onTextEntered = ({ text: { content } }) => console.log(`Entered: ${content}`);
 
-while (running) {
-  window.update();
-}
-window.close();
+const main = async () => {
+  while (running) {
+    await window.update();
+  }
+  window.close();
+};
+main();
